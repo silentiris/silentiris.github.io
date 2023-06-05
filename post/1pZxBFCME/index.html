@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>code-server安装及配置 | silentIris</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://silentiris.github.io/favicon.ico?v=1685973575587">
+<link rel="stylesheet" href="https://silentiris.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-271005846-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-271005846-1');
+</script>
+
+
+    <meta name="description" content="code-server 简介
+目前 Coder Technologies Inc, an Austin TX company 公司开源了一个基于服务器端的 VScode -- code-server，只要服务器端配置好code-server..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://silentiris.github.io">
+        <img src="https://silentiris.github.io/images/avatar.png?v=1685973575587" class="site-logo">
+        <h1 class="site-title">silentIris</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://silentiris.github.io/post/jZ3IrV_aj" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/silentiris" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+          <a class="social-link" href="https://twitter.com/silentdragon9" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      分享代码日常
+    </div>
+    <div class="site-footer">
+      <h>hello world!</h> | <a class="rss" href="https://silentiris.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">code-server安装及配置</h2>
+            <div class="post-date">2023-06-04  Sunday</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="code-server-简介">code-server 简介</h1>
+<p>目前 <em>Coder Technologies Inc, an Austin TX company</em> 公司开源了一个基于服务器端的 VScode -- code-server，只要服务器端配置好code-server，就可以在任何浏览器上使用VScode 。在code-server上可以自由的使用vscode中的插件，也可以快速的配置好一套云开发环境。</p>
+<p>下面来讲解一下code-server在linux上的下载与配置。</p>
+<pre><code class="language-shell">主机环境：（linux系统均可）
+debian11
+</code></pre>
+<h1 id="下载">下载</h1>
+<h2 id="1-下载code-server的二进制文件">1. 下载code-server的二进制文件</h2>
+<p><mark><a href="https://github.com/coder/code-server">code-server官方github地址</a></mark></p>
+<p>在release的asset中找到最新版本，此时是4.13.0</p>
+<figure data-type="image" tabindex="1"><img src="https://silentiris.github.io/post-images/image-20230604213416888.png" alt="image-20230604213416888" loading="lazy"></figure>
+<p>根据自己的linux服务器架构选择对应的版本，可以用<code>arch</code> 命令查看，例如我就是x86架构，应该选择amd64。</p>
+<pre><code class="language-shell">root@vultr:~# arch
+x86_64
+</code></pre>
+<p>使用wget来从github获取到压缩包</p>
+<pre><code class="language-shell"># wget https://github.com/coder/code-server/releases/download/v4.13.0/code-server-4.13.0-linux-amd64.tar.gz
+# ls
+code-server-4.13.0-linux-amd64.tar.gz
+//解压
+# tar -zxvf code-server-4.13.0-linux-amd64.tar.gz
+//此时就可以删除压缩包
+# rm code-server-4.13.0-linux-amd64.tar.gz 
+//给文件夹改名
+# mv code-server-4.13.0-linux-amd64/ code-server
+
+</code></pre>
+<h2 id="运行可执行文件">运行可执行文件</h2>
+<pre><code class="language-shell">//进入code-server的bin目录
+# cd code-server/bin
+# ls
+code-server  //只有一个code-server的可执行文件
+//执行code-server
+# ./code-server
+[2023-06-04T13:47:08.159Z] info  Wrote default config file to ~/.config/code-server/config.yaml
+[2023-06-04T13:47:08.744Z] info  code-server 4.13.0 2798322b03e7f446f59c5142215c11711ed7a427
+[2023-06-04T13:47:08.747Z] info  Using user-data-dir ~/.local/share/code-server
+[2023-06-04T13:47:08.763Z] info  Using config file ~/.config/code-server/config.yaml
+[2023-06-04T13:47:08.764Z] info  HTTP server listening on http://127.0.0.1:8080/
+[2023-06-04T13:47:08.764Z] info    - Authentication is enabled
+[2023-06-04T13:47:08.765Z] info      - Using password from ~/.config/code-server/config.yaml
+[2023-06-04T13:47:08.766Z] info    - Not serving HTTPS
+</code></pre>
+<p>这时候还不能直接访问，因为开放连接的ip是<code>127.0.0.1</code>，除了本机外无法访问。</p>
+<h2 id="更改配置文件">更改配置文件</h2>
+<p>可以去配置文件中修改，配置文件的路径是上面<code>[2023-06-04T13:47:08.763Z] info  Using config file ~/.config/code-server/config.yaml</code>中的<code>~/.config/code-server/config.yaml</code>，vim修改。</p>
+<pre><code class="language-shell"># vim ~/.config/code-server/config.yaml
+bind-addr: 127.0.0.1:8080
+auth: password
+password: 25d2c03cc74d3e3f6c56499a
+cert: false
+</code></pre>
+<p>bind-addr是你允许的访问的ip以及在那个端口开放，例如，如果想允许所有IP访问并开放8077端口，应该写<code>0.0.0.0:8077</code>。同时需要开放服务器的8077端口，如果云服务器有防火墙还需要去云服务器控制台开放8077端口。</p>
+<p>password是指你的访问密码，最好设置的复杂一点。</p>
+<p>然后保存文件并退出。</p>
+<h2 id="再次运行">再次运行</h2>
+<p>再次<code>./code-server</code></p>
+<pre><code class="language-shell">root@vultr:~/code-server/bin# ./code-server
+[2023-06-04T14:24:04.718Z] info  code-server 4.13.0 2798322b03e7f446f59c5142215c11711ed7a427
+[2023-06-04T14:24:04.723Z] info  Using user-data-dir ~/.local/share/code-server
+[2023-06-04T14:24:04.740Z] info  Using config file ~/.config/code-server/config.yaml
+[2023-06-04T14:24:04.740Z] info  HTTP server listening on http://0.0.0.0:8077/
+[2023-06-04T14:24:04.741Z] info    - Authentication is enabled
+[2023-06-04T14:24:04.742Z] info      - Using password from ~/.config/code-server/config.yaml
+[2023-06-04T14:24:04.742Z] info    - Not serving HTTPS
+</code></pre>
+<p>这时候code-server就启动成功了，可以去浏览器输入&lt;你的ip&gt;:8077访问code-server，例如：108.78.89.88:8077</p>
+<figure data-type="image" tabindex="2"><img src="https://silentiris.github.io/post-images/image-20230604222509505.png" alt="image-20230604222509505" loading="lazy"></figure>
+<p>出现这个界面就成功了，输入刚刚的密码，进入。</p>
+<figure data-type="image" tabindex="3"><img src="https://silentiris.github.io/post-images/image-20230604222828825.png" alt="image-20230604222828825" loading="lazy"></figure>
+<p>这和我们本地的vscode几乎一样的。</p>
+<h2 id="安装插件">安装插件</h2>
+<p>可以去插件市场搜索chinese插件，更换语言，并且下载一些自己需要的插件。有一些插件无法下载。我们可以从vscode扩展商店的网站上下载<code>.vsix</code>文件来手动安装。</p>
+<p><a href="https://marketplace.visualstudio.com/VSCode">微软插件市场</a></p>
+<figure data-type="image" tabindex="4"><img src="https://silentiris.github.io/post-images/image-20230604223222729.png" alt="image-20230604223222729" loading="lazy"></figure>
+<p>可以在这里下载，然后通过sftp上传到服务器，在code-server的插件界面可以选择<code>.vsix</code>文件安装拓展。</p>
+<figure data-type="image" tabindex="5"><img src="https://silentiris.github.io/post-images/image-20230604223350938.png" alt="image-20230604223350938" loading="lazy"></figure>
+<h2 id="在screen中启动">在screen中启动</h2>
+<p>目前这个code-server只存在于当前这个连接中，连接一旦断开就没有了。我们可以用screen，nohup或者tmux来让他在后台一直运行。</p>
+<p>例如screen：</p>
+<p>首先安装screen：</p>
+<pre><code class="language-shell"># apt install screen
+</code></pre>
+<p>开启一个新的screen(命名为&quot;code-server&quot;)：</p>
+<pre><code class="language-shell"># screen -S &quot;code-server&quot; 
+</code></pre>
+<p>现在即使断开连接，code-server在后台也会一直运行。</p>
+<p>ps. 一些常见的screen命令</p>
+<pre><code class="language-shell">screen -ls 显示进程列表
+screen -r sid 恢复某个进程
+screen -X -S sid quit 终止某个进程
+screen -S my_screen_name 修改会话名称
+ctrl+a d 离开当前进程
+ctrl+a k 终止当前进程
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://silentiris.github.io/tag/JNLN_7TrM/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://silentiris.github.io/post/NgW_kI9C8/">
+                  <h3 class="post-title">
+                    6.4 周报
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

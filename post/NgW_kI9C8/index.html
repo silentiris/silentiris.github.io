@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>6.4 周报 | silentIris</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://silentiris.github.io/favicon.ico?v=1685973575587">
+<link rel="stylesheet" href="https://silentiris.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-271005846-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-271005846-1');
+</script>
+
+
+    <meta name="description" content="这一周可以说干了不少，但其实好像在学习方面的也不是很多，想一想具体干了什么的话。大概就是
+
+学前端的知识。html，css，js等仅仅只能说过了一遍，了解了大概语法，还有一些vue的基础，学到了element-ui，但依然也是最基本的。还没..." />
+    <meta name="keywords" content="周报" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://silentiris.github.io">
+        <img src="https://silentiris.github.io/images/avatar.png?v=1685973575587" class="site-logo">
+        <h1 class="site-title">silentIris</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://silentiris.github.io/post/jZ3IrV_aj" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/silentiris" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+          <a class="social-link" href="https://twitter.com/silentdragon9" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      分享代码日常
+    </div>
+    <div class="site-footer">
+      <h>hello world!</h> | <a class="rss" href="https://silentiris.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">6.4 周报</h2>
+            <div class="post-date">2023-06-04  Sunday</div>
+            
+            <div class="post-content" v-pre>
+              <p>这一周可以说干了不少，但其实好像在学习方面的也不是很多，想一想具体干了什么的话。大概就是</p>
+<ol>
+<li>学前端的知识。html，css，js等仅仅只能说过了一遍，了解了大概语法，还有一些vue的基础，学到了element-ui，但依然也是最基本的。还没有看过前端项目的代码，希望去看的时候不要太吃力。</li>
+<li>用go语言去重构bot。这其实只是占用了很少时间，大概一个晚上的几个小时把。期间有很多问题，比如对象的反序列化。gin的基本使用等。对着cz的现成项目照猫画虎，基本了解了用gin实现go的基本逻辑。但是还要再熟练。值得注意的是，需要对go的闭包特性有更深的理解，多看一看代码，这是一个与java不一样的而且很灵活的特性。go需要学习的还有很多，继续努力。</li>
+<li>选购配件，组装服务器，内网穿透。这主要是三个过程。选购和组装基本是学长帮忙。自己在旁边看着也能学点什么吧。在搞frp的时候，又深深的感受到了计网知识贫瘠的痛苦。遇到问题找半天不知道怎么解决，对nginx完全不了解。对于交换机什么的也不知道怎么用。对域名的解析规则理解的不透彻，导致在配置子域名的时候经常有很窒息的操作。计算机网络还是要重点学习一下。对于配置code-server，clash和frp的过程可以写个博客记录一下。还有一点，安全意识过于薄弱。需要学习一下服务器的基本安全常识。</li>
+<li>搭博客。其实也并没有占用很长时间，用<code>gridea</code>直接速成了。用了大概一个晚上把。解析子域名的时候还稍微卡了卡。希望以后能坚持写下去。周报也记录在上面。</li>
+<li>把redis看完。上周的redis还剩下集群和哨兵模式。这两块儿其实只能说看了看有个大概印象把。以后实际应用的时候再细学。<br>
+上面差不多就是这周干的事了，现在总会有一种回首望过去，感觉好像也没干啥的感觉。这种感觉很不好，绝对不能发展成假学习的现象。要提高效率，并且有明确的目标，注意力需要再集中一点。不能太松散了。</li>
+</ol>
+<p>产生的疑问：</p>
+<ol>
+<li>nginx是干什么的？什么原理？和frp的区别？frp的原理？</li>
+<li>闭包的意义？（对于编程思想而言。）java的闭包可以说是真正的闭包吗？和go或者js 的闭包有什么区别？</li>
+<li>服务器的安全都需要注意什么？怎么能尽量保证在开放公网端口的同时还有较高的安全性？</li>
+</ol>
+<p>下一周的任务：<br>
+整体上就是复习期末和备考六级。<br>
+bottom-line：</p>
+<ol>
+<li>7套6级题，完整批改，听力复听，单词整理。</li>
+<li>高数复习：
+<ul>
+<li>级数复习，一天完成。</li>
+<li>微分方程复习，一天完成。</li>
+<li>所有复习题，一天完成。</li>
+</ul>
+</li>
+<li>大物复习：
+<ul>
+<li>速度：半天一章，保持高效率。</li>
+<li>至少复习2章。</li>
+</ul>
+</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://silentiris.github.io/tag/yxHfiDZjK/" class="tag">
+                    周报
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://silentiris.github.io/post/r_SdW9GU2/">
+                  <h3 class="post-title">
+                    Lambda表达式，方法引用与Stream Api
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>
